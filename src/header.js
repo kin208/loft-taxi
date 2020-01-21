@@ -2,16 +2,29 @@ import React from 'react';
 import logo from './mylogo.svg';
 
 
-class Header extends React.Component { 
-    render() {
-        return <div>
-            <button onClick={this.props.parentCallback.bind(this, 'map')} >Карта</button> 
-            <button onClick={this.props.parentCallback.bind(this, 'profile')} >Profile</button> 
-            <button onClick={this.props.parentCallback.bind(this, 'login')}>Login</button> 
-        </div>;
-    }
+function Header(props) {
 
-  
-}
+    const goTo = (e, page) => {
+        // console.log(e);
+         e.preventDefault();
+         props.parentCallback(page);
+     };
+ 
+     return (
+        <div>
+            <a 
+                href="#!" 
+                onClick={ (e) => goTo(e, 'map') }>Карта</a>
+            &nbsp;&nbsp;&nbsp;
+            <a 
+                href="#!" 
+                onClick={ (e) => goTo(e, 'profile') }>Профиль</a>
+            &nbsp;&nbsp;&nbsp;
+            <a 
+                href="#!" 
+                onClick={ (e) => goTo(e, 'login') }>Login</a>
+        </div>
+     )
+};
 
 export default Header;

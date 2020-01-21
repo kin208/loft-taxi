@@ -1,39 +1,24 @@
-import React from 'react'; 
+import React, { useState } from "react";
 import './App.css';
 import Header from './header';
 import Page from './page';
 
+function App() {
 
+  const [page, setPage] = useState('map');
 
-var pageValue = '';
-
-class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-     page: 'map',
-   };
-   //this.parentCallback = this.parentCallback.bind(this)
+  const parentCallback = (page) => {
+    setPage(page);
   };
 
- // <Header page={this.state.page} />
- 
-
-
- parentCallback = (variable, e) => {
-  this.setState(
-      { page: variable }
-    )
- };
-
-  render() {
-    return <div>
-      <Header parentCallback={this.parentCallback} />
+  return (
+    <div>
+      <Header parentCallback={parentCallback} />
         <hr />
-          <Page page={this.state.page}  parentCallback={this.parentCallback}/>
-      </div>;
-  }
-}  
+          <Page page={page}  parentCallback={parentCallback} />
+    </div>
+  );
+
+}
 
 export default App;

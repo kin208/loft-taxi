@@ -1,28 +1,35 @@
 import React from 'react';
 import './styles.css';
 
-import Profile from './profile';
-import Map from './map';
-import Login from './login';
+import Profile from './pages/profile';
+import Map from './pages/map';
+import Login from './pages/login';
+import Reg from './pages/reg';
 
+function Page(props) {
 
-class Page extends React.Component {
+    console.log(props);
 
-    render() {
-        if( this.props.page == 'profile' )
-        {
-            return <Profile />;
-        }
-        else if( this.props.page == 'map' )
-        {
-            return <Map />;
-        }
-        else if( this.props.page == 'login' )
-        {
-            return <Login />;
-        }
+    const subParentCallback = (page) => {
+        props.parentCallback(page);
+    };
+  
+   if( props.page === 'profile' )
+    {
+        return <Profile  subParentCallback={subParentCallback} />;
     }
-    
+    else if( props.page === 'map' )
+    {
+        return <Map  subParentCallback={subParentCallback} />;
+    }
+    else if( props.page === 'login' )
+    {
+        return <Login  subParentCallback={subParentCallback} />;
+    }
+    else if( props.page === 'register' )
+    {
+        return <Reg subParentCallback={subParentCallback} />;
+    }
 }
 
 export default Page;
