@@ -5,11 +5,9 @@ import Profile from './pages/profile';
 import Map from './pages/map';
 import Login from './pages/login';
 import Reg from './pages/reg';
+import PropTypes from "prop-types";
 
 function Page(props) {
-
-    console.log(props);
-
     const subParentCallback = (page) => {
         props.parentCallback(page);
     };
@@ -31,5 +29,11 @@ function Page(props) {
         return <Reg subParentCallback={subParentCallback} />;
     }
 }
+
+Page.propTypes = {
+    page: PropTypes.string.isRequired,
+    parentCallback: PropTypes.func.isRequired
+};
+
 
 export default Page;
