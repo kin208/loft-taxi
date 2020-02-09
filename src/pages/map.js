@@ -18,19 +18,11 @@ function Map (props) {
   ); 
 
   const goTo = (e, page) => {
-     // console.log(e);
       e.preventDefault();
-
-
-      //MainContext.proceedLogin( {email: '111', password: '222'} );
       props.subParentCallback(page);
   };
 
-
-  
   useEffect(() => { 
-    if( contextValue.isLogin )
-    {
           const map = new Mapboxgl.Map({
             accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA',
             container: document.getElementById('mapBody'),
@@ -42,6 +34,7 @@ function Map (props) {
           map.on('move', () => {
 
             const { lng, lat } = map.getCenter();  
+            
             contextValue.setCoord(
               {
                 lng: lng.toFixed(4),
@@ -49,26 +42,21 @@ function Map (props) {
                 zoom: map.getZoom().toFixed(2)
               }
             );
-            console.log( lng+' '+lat );
-            /*
-            setMapObj({
-              lng: lng.toFixed(4),
-              lat: lat.toFixed(4),
-              zoom: map.getZoom().toFixed(2)
-            }); */
-          }); 
-    }
-  }, [mapObj, setMapObj]);
+          });  
+          
+  }, [mapObj, setMapObj, contextValue]); 
   
   return (
     <>
-    { contextValue.isLogin ? (
       <div className={props.classes.wrapper}  data-testid="mapContainer">
 
         <div id="mapBody" className="mapboxgl-map" data-testid="mapBody"
         style={{ position: 'absolute', top: '0px', bottom: '0px', left: '0px', right: '0px',  height: '725px' }} 
         />
+      </div>
       
+    { contextValue.isLogin ? (
+      <div className={props.classes.wrapper} data-testid="mapTaxiForm">
         <Paper elevation={4}  className={props.classes.cc} >
           <Grid container={true} >
             <Grid item={true} xs={12} >
@@ -82,12 +70,12 @@ function Map (props) {
             </Grid>
           </Grid>
         </Paper>
-      </div>
+      </div> 
     ) : (
       <div className={props.classes.wrapper} data-testid="mapNeedLogin">
         <Paper elevation={4}  className={props.classes.cc} >
           <a href="#!" 
-            onClick={ (e) => goTo(e, 'login') }>Авторизуйтесь</a> чтобы получить доступ к карте.</Paper> 
+            onClick={ (e) => goTo(e, 'login') }>Авторизуйтесь</a> чтобы вызвать такси</Paper> 
       </div>
     )}
 
@@ -95,59 +83,7 @@ function Map (props) {
   );
 
 }
-  /*
-class Map extends React.Component {
-    
-    constructor(props: Props) {
-        super(props);
-       
-        this.state = {
-          lng: 60.597465,
-          lat: 56.838011,
-          zoom: 12
-        };
-      }
-    
-      componentDidMount() {
-        const { lng, lat, zoom } = this.state;
-    
-        const map = new mapboxgl.Map({
-          container: this.mapContainer,
-          style: 'mapbox://styles/mapbox/streets-v9',
-          center: [lng, lat],
-          zoom
-        });
 
-
-        map.on('move', () => {
-          const { lng, lat } = map.getCenter();
-    
-          this.setState({
-            lng: lng.toFixed(4),
-            lat: lat.toFixed(4),
-            zoom: map.getZoom().toFixed(2)
-          });
-        });
-      }
-    
-      render() {
-        const { lng, lat, zoom } = this.state;
-    
-        return (
-          <>
-          <div style={{position: 'relative', zIndex: -10}}>
-
-            <div ref={el => this.mapContainer = el} className="mapboxgl-map" 
-            style={{ position: 'absolute', top: '0px', bottom: '0px', left: '0px', right: '0px',  height: '725px' }}
-         
-            />
-          </div>
-          </>
-        );
-      }
-
-}
-*/
 Map.propTypes = {
     subParentCallback: PropTypes.func.isRequired
 };

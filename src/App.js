@@ -1,18 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import './App.css';
 import Header from './header';
 import Page from './page';
 
-import AppBar from '@material-ui/core/AppBar';
-import { MainContext } from './context/mainContext'; 
-
+import AppBar from '@material-ui/core/AppBar'; 
+import { CssBaseline } from '@material-ui/core';
 
 function App() {
 
-  const [page, setPage] = useState('map');
-  const contextValue = useContext( MainContext );
-
-  console.log("contextValue (1): "+contextValue);
+  const [page, setPage] = useState('map'); 
 
   const parentCallback = (page) => {
     setPage(page);
@@ -20,6 +16,7 @@ function App() {
   
   return (
     <div  data-testid="AppContainer" >
+      <CssBaseline />
       <AppBar component="header" elevation={4}  style={{backgroundColor: '#ffffff'}} 
         position="static">
         

@@ -8,7 +8,7 @@ import { theme } from "loft-taxi-mui-theme"; // Импортируем саму 
 
 import * as serviceWorker from './serviceWorker';
 
-import { MainContext, MainContextProvider } from './context/mainContext'; 
+import { MainContextProvider } from './context/mainContext'; 
 
 
 ReactDOM.render(

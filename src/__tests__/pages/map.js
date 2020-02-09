@@ -4,15 +4,6 @@ import {render, fireEvent, screen} from '@testing-library/react';
 import { MainContext, MainContextProvider } from '../../context/mainContext'; 
 import Map from '../../pages/map'; 
 
-jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
-    GeolocateControl: jest.fn(),
-    Map: jest.fn(() => ({
-        addControl: jest.fn(),
-        on: jest.fn(),
-        remove: jest.fn()
-    })),
-    NavigationControl: jest.fn()
-}));
 
 describe("Map Page Testing", () => {
     it("Map NoAuthorized Testing", () => {

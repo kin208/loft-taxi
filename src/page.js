@@ -6,12 +6,8 @@ import Map from './pages/map';
 import Login from './pages/login';
 import Reg from './pages/reg';
 import PropTypes from "prop-types";
-import { MainContext } from './context/mainContext';
 
 function Page(props) {
-
-    console.log(props);
-
     const subParentCallback = (page) => {
         props.parentCallback(page);
     };

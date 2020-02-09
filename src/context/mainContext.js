@@ -18,12 +18,7 @@ const MainContextProvider = (props) => {
         isLogin: isLoginState,
         coord: coordState,
         proceedLogin: (item) => {
-            console.log(item.email);
-
             setEmailState(item.email);
-            
-            //this.email = item.email;
-            //this.isLogin = 1;
             setLoginState( 1 ); 
         },
         setCoord: (item) => {
