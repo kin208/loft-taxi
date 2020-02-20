@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route  } from 'react-router-dom';
+import Map from './components/map.js';
+import Profile from './components/profile.js';
+import Header from './components/header.js';
+import Login from './components/login.js';
+import Register from './components/register.js';
+import Logout from './components/logout.js';
+import PrivateRouter from "./PrivateRouter";
+
+import AppBar from '@material-ui/core/AppBar'; 
+import { CssBaseline } from '@material-ui/core';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+     
+    return (
+        <div className="App"  data-testid="AppContainer">
+         <CssBaseline />
+
+         <AppBar component="header" elevation={4}  style={{backgroundColor: '#ffffff'}} 
+        position="static">
+            <Header />
+        </AppBar>
+        <>
+            <PrivateRouter path="/" component={Map} exact />
+            <PrivateRouter path="/map" component={Map} exact /> 
+            <Route path="/login" component={Login} exact />  
+            
+            <Route path="/register" component={Register} exact />  
+            <Route path="/logout" component={Logout} exact />  
+            
+            <PrivateRouter path="/profile" component={Profile} exact />
+        </>
+        </div>
+    ); 
+} 
 
 export default App;
