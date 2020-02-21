@@ -10,7 +10,7 @@ import { theme } from "loft-taxi-mui-theme"; // Импортируем саму 
 import Styles from '../../css/commonCss';
 
 import Reducer from '../../modules/user/reducer';
-import Login from '../../components/login';
+import Header from '../../components/header';
 
 import createStore from './../../store'; 
 const store = createStore();
@@ -37,51 +37,8 @@ it("renders correctly", () => {
     
     
     const { queryByTestId } = renderWithRedux( 
-        <Login />
+        <Header />
     );
 
-    expect(queryByTestId("loginForm")).toBeTruthy();
-});
-
-it("Submit with null password ", () => {
-
-    const { queryByTestId } = renderWithRedux( 
-        <Login />
-    );
-
-    fireEvent.submit(
-        queryByTestId('loginForm'),
-        {
-            target: {
-                login: {value: 'kin208spam@gmail.com'},
-                pass: {value: ''},
-            }
-        }
-    ); 
-
-    expect(queryByTestId('passError')).toBeTruthy();
-
-});
-
-it("Submit with correct pass", async () => {
-
-    const { container, queryByTestId } = renderWithRedux( 
-        <Login />
-    );
-
-    fireEvent.submit(
-        queryByTestId('loginForm'),
-        {
-            target: {
-                login: {value: 'kin208spam@gmail.com'},
-                pass: {value: '123123'},
-            }
-        }
-    );
- 
-    await waitForElement(() => queryByTestId('successMessage'));  
-    await waitForElement(() => container );  
-
-    expect(queryByTestId('successMessage')).toBeTruthy();
-
+    expect(queryByTestId("headerContainer")).toBeTruthy();
 });

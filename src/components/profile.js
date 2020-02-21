@@ -7,6 +7,7 @@ import AllActions from '../modules/user/actions';
 import AllSelectors from '../modules/user/selectors';
 import { Paper, Grid, TextField, Button, Typography  } from '@material-ui/core';
 import { useDispatch, useSelector  } from 'react-redux'; 
+import { compose  } from 'redux'; 
  
 function Profile(props) {  
   const dispatch = useDispatch();
@@ -72,4 +73,7 @@ function Profile(props) {
   );
 } 
 
-export default withRouter( withStyles(Styles)(Profile) ); 
+export default compose( 
+  withRouter,
+  withStyles(Styles)
+)( Profile );      

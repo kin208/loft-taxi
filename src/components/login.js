@@ -5,6 +5,7 @@ import AllActions from '../modules/user/actions';
 import AllSelectors from '../modules/user/selectors';
 import Styles from '../css/commonCss';
 import { Paper, Grid, TextField, Button, Typography  } from '@material-ui/core';
+import { compose  } from 'redux'; 
 
 import { useDispatch, useSelector   } from 'react-redux'; 
 
@@ -21,7 +22,7 @@ function Login(props) {
   const proceedForm = (e) => {
     e.preventDefault();
 
-     let res = setLoginRequest(
+      setLoginRequest(
       {
         email: e.target.login.value, 
         password: e.target.pass.value
@@ -90,4 +91,7 @@ function Login(props) {
   );
 } 
  
-export default withRouter( withStyles(Styles)(Login) ); 
+export default compose( 
+  withRouter,
+  withStyles(Styles)
+)( Login);  

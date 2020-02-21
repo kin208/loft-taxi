@@ -8,11 +8,14 @@ import {
    
   setRegisterSuccess,
   setRegisterFail ,
+  setRegisterRequest,
  
   setProfileSuccess,
   setProfileFail, 
   getProfileSuccess,
-
+  getProfileFail,
+  getProfileRequest,
+  
   setMapCoord,
 } from './actions';  
 
@@ -26,6 +29,14 @@ const isLogged = handleActions(
 
 const userData = handleActions(
   { 
+    [setRegisterRequest]: (_state, action) => { 
+      return {
+        email: action.payload.email,
+        password: action.payload.password,
+        name: action.payload.name,
+        surname: action.payload.surname, 
+      }
+    },
     [setLoginSuccess]: (_state, action) => { 
       return {email: action.payload.email}
     },
@@ -66,6 +77,7 @@ const successMessage = handleActions(
     [setRegisterSuccess]: (_state, action) => action.payload.successMessage,
     [setProfileSuccess]: (_state, action) => action.payload.successMessage,
     [setLoginSuccess]: (_state, action) => action.payload.successMessage,
+    [getProfileRequest]: () => false,
   },
   false,
 );
@@ -76,6 +88,7 @@ const errorMessages = handleActions(
     [setRegisterFail]: (_state, action) => action.payload,
     [setLogoutFail]: (_state, action) => action.payload,
     [setProfileFail]: (_state, action) => action.payload,
+    [getProfileFail]: (_state, action) => action.payload,
     
     [setLoginSuccess]: () => false,
     [setRegisterSuccess]: () => false,

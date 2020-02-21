@@ -17,6 +17,7 @@
     "react-scripts": "3.3.0",
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
+    "redux-localstorage": "^0.4.1",
     "reselect": "^4.0.0"
   },
   "scripts": {

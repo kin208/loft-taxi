@@ -6,6 +6,7 @@ import Styles from '../css/commonCss';
 import { useDispatch, useSelector  } from 'react-redux'; 
 import AllSelectors from '../modules/user/selectors';
 import { Paper, Grid, TextField, Button, Typography  } from '@material-ui/core';
+import { compose  } from 'redux'; 
  
  
 function Register(props) {  
@@ -98,4 +99,7 @@ function Register(props) {
   );
 } 
 
-export default withRouter( withStyles(Styles)(Register) ); 
+export default compose( 
+  withRouter,
+  withStyles(Styles)
+)( Register );       

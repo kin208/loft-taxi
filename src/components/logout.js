@@ -5,6 +5,7 @@ import Styles from '../css/commonCss';
 import AllActions from '../modules/user/actions';
 import { Paper, Grid, Typography  } from '@material-ui/core';
 import { useDispatch } from 'react-redux'; 
+import { compose  } from 'redux'; 
  
 function Logout(props) {  
 
@@ -30,4 +31,7 @@ function Logout(props) {
     );
 } 
 
-export default withRouter( withStyles(Styles)(Logout) ); 
+export default compose( 
+    withRouter,
+    withStyles(Styles)
+  )( Logout );    

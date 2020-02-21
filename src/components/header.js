@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';  
 import { useSelector  } from 'react-redux'; 
+import { compose  } from 'redux'; 
 import { withStyles } from '@material-ui/core/styles'; 
 import Styles from '../css/commonCss';
 
@@ -39,8 +40,6 @@ function Header(props) {
             <Typography  component="p" className={classes.cc}  > 
                     <Logo /> 
             </Typography>
-
-
             { isLogged ? (
                 <>
                     <span data-testid="userInfo">Привет, {userData.email} !</span>
@@ -60,14 +59,13 @@ function Header(props) {
             ) : (
                 <Elem  to="/login" id="login" name="Login" />   
             )}
- 
-            
-            
-            
         </Toolbar>
     );
-
 };
 
 
-export default withRouter(  withStyles(Styles)(Header) );
+
+export default compose( 
+    withRouter,
+    withStyles(Styles)
+  )( Header );   
